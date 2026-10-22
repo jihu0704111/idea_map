@@ -15,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# IdeaMap
+우리 동네에 필요한 가게를 주민과 창업자가 함께 찾아가는 서비스
