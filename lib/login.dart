@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idea_map/post.dart';
 
 class login extends StatefulWidget {
   const new({super.key});
@@ -95,7 +96,11 @@ class _loginState extends State<login> {
                     backgroundColor: const Color.fromARGB(255, 62, 115, 158)
                   ),
                   onPressed: (){
-                
+                    Navigator.pushReplacement(
+                      context, 
+                      MaterialPageRoute(
+                        builder: (context) => post()),
+                        );
                   },
                   child: Text("로그인",style: TextStyle(fontSize: 26,color: const Color.fromARGB(255, 255, 255, 255)),),
                 ),
