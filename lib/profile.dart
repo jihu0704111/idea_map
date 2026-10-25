@@ -14,18 +14,32 @@ class Profile extends StatelessWidget {
     double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: screenWidth * 0.25,
         title: Container(
           child: Center(
             child: Column(
               children: [
                 SizedBox(height: 30),
-                Text(
-                  "프로필",
-                  style: TextStyle(
-                    fontSize: 26,
-                    color: const Color.fromARGB(255, 33, 169, 231),
-                  ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(onPressed: (){
+                        Navigator.pop(context);
+                      }, icon: Icon(Icons.arrow_back)),
+                    ),
+                    Container(
+                      child: Text(
+                        "프로필",
+                        style: TextStyle(
+                          fontSize: 26,
+                          color: const Color.fromARGB(255, 33, 169, 231),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20),
                 Container(

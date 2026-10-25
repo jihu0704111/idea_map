@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idea_map/home.dart';
 
 import 'package:idea_map/login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.tealAccent),
       ),
-      home: login(),
+      home: Home(),
     );
   }
 }

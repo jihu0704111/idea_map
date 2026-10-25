@@ -87,26 +87,31 @@ class _loginState extends State<login> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 62, 115, 158),
                   ),
-                  onPressed: () async {
-                    try {
-                      final id = _emailController.text.trim();
-                      final password = _passwordController.text.trim();
-
-                      final response = await supabase.auth.signInWithPassword(
-                        email: id,
-                        password: password,
-                      );
-
-                      if (response.user != null) {
-                        Navigator.pushReplacement(
+                   onPressed: () {
+                    Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(builder: (context) => post()),
                         );
-                      }
-                    } catch (e) {
-                      print("로그인 실패: $e");
-                    }
-                  },
+                   },//async {
+                  //   try {
+                  //     final id = _emailController.text.trim();
+                  //     final password = _passwordController.text.trim();
+
+                  //     final response = await supabase.auth.signInWithPassword(
+                  //       email: id,
+                  //       password: password,
+                  //     );
+
+                  //     if (response.user != null) {
+                  //       Navigator.pushReplacement(
+                  //         context,
+                  //         MaterialPageRoute(builder: (context) => post()),
+                  //       );
+                  //     }
+                  //   } catch (e) {
+                  //     print("로그인 실패: $e");
+                  //   }
+                  // },
                   child: Text(
                     "로그인",
                     style: TextStyle(

@@ -11,12 +11,31 @@ class post extends StatefulWidget {
 
 class _postState extends State<post> {
   List<Map<String, String>> datas = [];
+
+  void goWrite() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return write(
+            onUpload: (title, content) {
+              setState(() {
+                datas.insert(0, {"title": title, "content": content});
+              });
+            },
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        
         toolbarHeight: screenwidth * 0.25,
         title: Center(
           child: Column(
@@ -113,24 +132,7 @@ class _postState extends State<post> {
               alignment: Alignment.centerRight,
 
               child: ElevatedButton(
-                onPressed: () {
-                  // 글쓰기 화면으로 이동
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        
-                        return write(
-                          onUpload: (title, content){
-                            setState(() {
-                              
-                            });
-                          },
-                        );
-                      },
-                    ),
-                  );
-                },
+                onPressed: goWrite,
                 child: const Text("글쓰기"),
               ),
             ),
@@ -140,5 +142,3 @@ class _postState extends State<post> {
     );
   }
 }
-
-// 글쓰기 화면
