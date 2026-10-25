@@ -56,7 +56,7 @@ class _postState extends State<post> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => profile()),
+                          MaterialPageRoute(builder: (context) => Profile()),
                         );
                       },
                       icon: Icon(
