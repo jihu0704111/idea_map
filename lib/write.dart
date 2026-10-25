@@ -1,13 +1,29 @@
 import 'package:flutter/material.dart';
 
 class write extends StatefulWidget {
-  const write({super.key});
+  final Function(String, String) onUpload;
+  const write({super.key, required this.onUpload});
 
   @override
   State<write> createState() => _writeState();
 }
 
 class _writeState extends State<write> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+  void uploadPost() {
+    String title = titleController.text.trim();
+
+    String content = contentController.text.trim();
+
+    widget.onUpload(title, content);
+    titleController.clear();
+    contentController.clear();
+
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text("게시판에 등록되었습니다.")));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +41,7 @@ class _writeState extends State<write> {
             const SizedBox(height: 10),
 
             TextField(
+              controller: titleController,
               decoration: InputDecoration(
                 hintText: "제목을 작성 해 주세요",
 
@@ -39,6 +56,7 @@ class _writeState extends State<write> {
             const SizedBox(height: 10),
 
             TextField(
+              controller: contentController,
               maxLines: 5,
 
               decoration: InputDecoration(
@@ -52,9 +70,7 @@ class _writeState extends State<write> {
 
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: uploadPost,
 
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
