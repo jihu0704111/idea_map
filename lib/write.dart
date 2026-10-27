@@ -25,64 +25,158 @@ class _writeState extends State<write> {
   }
 
   @override
+  void dispose() {
+    titleController.dispose();
+    contentController.dispose();
+    super.dispose();
+  }
+
+  PreferredSizeWidget buildingAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      titleSpacing: 0,
+      title: Row(
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.close, color: Colors.black),
+          ),
+          const Expanded(
+            child: Center(
+              child: Text(
+                '글쓰기',
+                style: TextStyle(
+                  color: Color(0xFF32B875),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: uploadPost,
+            child: const Text(
+              '등록',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
+    );
+  }
+
+  PreferredSizeWidget buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      title: Row(
+        children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.close, color: Colors.black),
+          ),
+          const Expanded(
+            child: Center(
+              child: Text(
+                '글쓰기',
+                style: TextStyle(
+                  color: Color(0xFF32B875),
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: uploadPost,
+            child: const Text('등록', style: TextStyle(color: Colors.black)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("글쓰기")),
+      backgroundColor: Colors.white,
+      appBar: buildAppBar(),
 
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-
+      body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
-            const Text("제목"),
-
-            const SizedBox(height: 10),
-
-            TextField(
-              controller: titleController,
-              decoration: InputDecoration(
-                hintText: "제목을 작성 해 주세요",
-
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            const Text("설명"),
-
-            const SizedBox(height: 10),
-
-            TextField(
-              controller: contentController,
-              maxLines: 5,
-
-              decoration: InputDecoration(
-                hintText: "설명 입력",
-
-                border: OutlineInputBorder(),
-              ),
-            ),
-
-            const SizedBox(height: 60),
-
-            Center(
-              child: ElevatedButton(
-                onPressed: uploadPost,
-
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-
-                  children: [
-                    Icon(Icons.star),
-
-                    SizedBox(width: 5),
-
-                    Text("글 올리기"),
-                  ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: TextField(
+                controller: titleController,
+                decoration: const InputDecoration(
+                  hintText: '제목을 입력해주세요',
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF32B875)),
+                  ),
                 ),
+              ),
+            ),
+
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: TextField(
+                  controller: contentController,
+                  maxLines: null,
+                  expands: true,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: const InputDecoration(
+                    hintText: '내용을 입력해주세요. (#카페 #음식점)',
+                    hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ),
+
+            Container(
+              height: 54,
+              margin: const EdgeInsets.symmetric(horizontal: 18),
+              decoration: const BoxDecoration(
+                border: Border(top: BorderSide(color: Colors.grey, width: 1)),
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add_photo_alternate_outlined,
+                      size: 22,
+                      color: Colors.black87,
+                    ),
+                  ),
+
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.videocam_outlined,
+                      size: 22,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
