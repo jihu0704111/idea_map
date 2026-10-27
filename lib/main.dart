@@ -3,6 +3,7 @@ import 'package:idea_map/home.dart';
 
 import 'package:idea_map/login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:idea_map/splashScreen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.tealAccent),
       ),
-      home: Home(),
+      home: Splashscreen(),
     );
   }
 }

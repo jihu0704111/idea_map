@@ -62,7 +62,7 @@ class Profile extends StatelessWidget {
 
               Container(
                 color: Colors.grey,
-                width: screenWidth * 0.95,
+                width: screenWidth * 0.9,
                 height: 2,
               ),
 
@@ -85,7 +85,7 @@ class Profile extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: screenWidth * 0.89,
+                        width: screenWidth * 0.9,
                         height: screenheight * 0.26,
                         padding: EdgeInsets.symmetric(vertical: 16),
                         decoration: BoxDecoration(
@@ -93,18 +93,23 @@ class Profile extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "내가 쓴 글",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  Icon(Icons.chevron_right),
-                                ],
+                            
+                            InkWell(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                width: screenWidth*0.8,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "내가 쓴 글",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    Icon(Icons.chevron_right),
+                                  ],
+                                ),
                               ),
                             ),
 
@@ -116,24 +121,28 @@ class Profile extends StatelessWidget {
                               ),
                               child: Container(
                                 color: Colors.grey,
-                                width: screenWidth * 0.8,
                                 height: 2,
                               ),
                             ),
 
                             SizedBox(height: 9),
 
-                            TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "좋아요 누른 글",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
+                            InkWell(
+                              onTap: (){
 
-                                  Icon(Icons.chevron_right),
-                                ],
+                              },
+                              child: Container(
+                                width: screenWidth*0.8,
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "좋아요 누른 글",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                              
+                                    Icon(Icons.chevron_right),
+                                  ],
+                                ),
                               ),
                             ),
 
@@ -145,20 +154,25 @@ class Profile extends StatelessWidget {
                               ),
                               child: Container(
                                 color: Colors.grey,
-                                width: screenWidth * 0.8,
+                                width: screenWidth * 0.9,
                                 height: 2,
                               ),
                             ),
 
                             SizedBox(height: 9),
 
-                            TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text("댓글 관리", style: TextStyle(fontSize: 20)),
-                                  Icon(Icons.chevron_right),
-                                ],
+                            InkWell(
+                              onTap: (){
+
+                              },
+                              child: Container(
+                                width: screenWidth*0.8,
+                                child: Row(
+                                  children: [
+                                    Text("댓글 관리", style: TextStyle(fontSize: 20)),
+                                    Icon(Icons.chevron_right),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -176,7 +190,7 @@ class Profile extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "환결 설정",
+                        "환경 설정",
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
@@ -188,7 +202,7 @@ class Profile extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        width: screenWidth * 0.89,
+                        width: screenWidth * 0.9,
                         height: screenheight * 0.18,
                         padding: EdgeInsets.symmetric(vertical: 16),
                         decoration: BoxDecoration(
