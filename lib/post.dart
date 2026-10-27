@@ -14,6 +14,11 @@ class _postState extends State<post> {
 
 
   List<Map<String, String>> datas = [];
+  void deletePost(int index) {
+    setState(() {
+      datas.removeAt(index);
+    });
+  }
 
   void goWrite() {
     Navigator.push(
