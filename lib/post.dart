@@ -35,7 +35,6 @@ class _postState extends State<post> {
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        
         toolbarHeight: screenwidth * 0.25,
         title: Center(
           child: Column(
@@ -47,24 +46,33 @@ class _postState extends State<post> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "게시판",
+                      "LinkLocal",
                       style: TextStyle(
-                        fontSize: 26,
-                        color: const Color.fromARGB(255, 33, 169, 231),
+                        fontSize: 35,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFF2FB475),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Profile()),
-                        );
-                      },
-                      icon: Icon(
-                        Icons.account_circle,
-                        size: 30,
-                        color: const Color.fromARGB(255, 33, 169, 231),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.search,
+                            size: 30,
+                            color: const Color(0xFF2FB475),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.notifications,
+                            size: 30,
+                            color: const Color(0xFF2FB475),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -72,11 +80,6 @@ class _postState extends State<post> {
               SizedBox(height: 20),
 
               SizedBox(height: 20),
-              Container(
-                color: const Color.fromARGB(255, 55, 133, 153),
-                width: screenwidth * 0.8,
-                height: 1,
-              ),
             ],
           ),
         ),
@@ -85,6 +88,19 @@ class _postState extends State<post> {
       // 매인 화면
       body: Column(
         children: [
+          Row(
+            children: [
+              Text(
+                "게시판",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text("최순실", style: TextStyle(fontSize: 10))],
+          ),
           // 게시판 목록
           Expanded(
             child: ListView.builder(
