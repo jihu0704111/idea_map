@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idea_map/main.dart';
 import 'package:idea_map/post.dart';
+import 'package:idea_map/screen.dart';
 
 class login extends StatefulWidget {
   const new({super.key});
@@ -90,7 +91,7 @@ class _loginState extends State<login> {
                    onPressed: () {
                     Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => post()),
+                          MaterialPageRoute(builder: (context) => Screen()),
                         );
                    },//async {
                   //   try {
