@@ -3,17 +3,17 @@ import 'package:idea_map/main.dart';
 import 'package:idea_map/post.dart';
 import 'package:idea_map/screen.dart';
 
-class login extends StatefulWidget {
+class emailLogin extends StatefulWidget {
   const new({super.key});
 
   @override
-  State<login> createState() => _loginState();
+  State<emailLogin> createState() => _emailLoginState();
 }
 
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-class _loginState extends State<login> {
+class _emailLoginState extends State<emailLogin> {
   bool isPassword = true;
   @override
   Widget build(BuildContext context) {
@@ -21,35 +21,34 @@ class _loginState extends State<login> {
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: screenHeight * 0.4,
+         toolbarHeight: screenHeight * 0.4,
         title: Center(
           child: Column(
             children: [
               SizedBox(height: 50),
               Text(
-                "IdeaMap",
+                "LinkLocal",
                 style: TextStyle(
                   fontSize: 48,
-                  color: const Color.fromARGB(255, 33, 169, 231),
+                  color: Color(0xFF2FB475),
                 ),
               ),
               SizedBox(height: 50),
               Container(
-                color: const Color.fromARGB(255, 55, 133, 153),
+                color: Color(0xFF2FB475),
                 width: screenwidth * 0.6,
                 height: 1,
               ),
             ],
           ),
         ),
-      ),
+),
       body: Center(
         child: Container(
           width: screenwidth * 0.7,
           height: screenHeight * 1,
           //color: Colors.amber,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 5),
               TextField(
@@ -86,7 +85,7 @@ class _loginState extends State<login> {
                 height: 60,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 62, 115, 158),
+                    backgroundColor: Color(0xFF2FB475),
                   ),
                    onPressed: () {
                     Navigator.pushReplacement(

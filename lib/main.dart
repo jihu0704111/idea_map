@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:idea_map/home.dart';
+import 'package:idea_map/loginstart.dart';
 
-import 'package:idea_map/login.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:idea_map/splashScreen.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

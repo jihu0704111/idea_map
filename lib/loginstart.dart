@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:idea_map/login.dart';
+import 'package:idea_map/emailLogin.dart';
 import 'package:idea_map/post.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class loginstart extends StatefulWidget {
+  const loginstart({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<loginstart> createState() => _loginstartState();
 }
 
-class _HomeState extends State<Home> {
+class _loginstartState extends State<loginstart> {
   @override
   
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class _HomeState extends State<Home> {
                 onTap: (){
                   Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => login()),
+                          MaterialPageRoute(builder: (context) => emailLogin()),
                         );
                 }
                 ,

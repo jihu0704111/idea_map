@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:idea_map/home.dart';
+import 'package:idea_map/emailLogin.dart';
 import 'dart:async';
 
-import 'package:idea_map/login.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -20,7 +19,7 @@ class _SplashscreenState extends State<Splashscreen> {
       Navigator.pushReplacement(
         context,
        MaterialPageRoute(
-        builder: (context) => Home(),
+        builder: (context) => emailLogin(),
        ),);
     });
   }
