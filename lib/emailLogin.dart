@@ -21,17 +21,14 @@ class _emailLoginState extends State<emailLogin> {
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-         toolbarHeight: screenHeight * 0.4,
+        toolbarHeight: screenHeight * 0.4,
         title: Center(
           child: Column(
             children: [
               SizedBox(height: 50),
               Text(
                 "LinkLocal",
-                style: TextStyle(
-                  fontSize: 48,
-                  color: Color(0xFF2FB475),
-                ),
+                style: TextStyle(fontSize: 48, color: Color(0xFF2FB475)),
               ),
               SizedBox(height: 50),
               Container(
@@ -42,7 +39,7 @@ class _emailLoginState extends State<emailLogin> {
             ],
           ),
         ),
-),
+      ),
       body: Center(
         child: Container(
           width: screenwidth * 0.7,
@@ -87,12 +84,12 @@ class _emailLoginState extends State<emailLogin> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF2FB475),
                   ),
-                   onPressed: () {
+                  onPressed: () {
                     Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => Screen()),
-                        );
-                   },//async {
+                      context,
+                      MaterialPageRoute(builder: (context) => Screen()),
+                    );
+                  }, //async {
                   //   try {
                   //     final id = _emailController.text.trim();
                   //     final password = _passwordController.text.trim();
@@ -176,7 +173,6 @@ class _emailLoginState extends State<emailLogin> {
                                       SizedBox(height: 70),
 
                                       SizedBox(
-                                        
                                         width: screenwidth * 0.65,
                                         child: TextField(
                                           controller: _passwordController,
@@ -185,8 +181,7 @@ class _emailLoginState extends State<emailLogin> {
                                             prefixIcon: Icon(Icons.lock),
                                             labelText: "비밀번호",
                                             border: OutlineInputBorder(),
-                                            suffixIcon: 
-                                            IconButton(
+                                            suffixIcon: IconButton(
                                               icon: Icon(
                                                 isPassword
                                                     ? Icons.visibility_off
@@ -243,8 +238,7 @@ class _emailLoginState extends State<emailLogin> {
                                                       ),
                                                     );
                                               }
-                                            
-                                            } catch (e){
+                                            } catch (e) {
                                               print("회원가입 실패 (기타): $e");
                                             }
                                           },

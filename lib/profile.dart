@@ -84,23 +84,19 @@ class Profile extends StatelessWidget {
 
                   Row(
                     children: [
-                      Container(
-                        width: screenWidth * 0.9,
-                        height: screenheight * 0.26,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 3),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          children: [
-                            
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                width: screenWidth*0.8,
+                      Expanded(
+                        child: Container(
+                          width: screenWidth * 0.9,
+                          height: screenheight * 0.26,
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 3),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            children: [
+                              TextButton(
+                                onPressed: () {},
                                 child: Row(
                                   children: [
                                     Text(
@@ -111,71 +107,60 @@ class Profile extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ),
 
-                            SizedBox(height: 9),
+                              SizedBox(height: 9),
 
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: Container(color: Colors.grey, height: 2),
                               ),
-                              child: Container(
-                                color: Colors.grey,
-                                height: 2,
-                              ),
-                            ),
 
-                            SizedBox(height: 9),
+                              SizedBox(height: 9),
 
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                width: screenWidth*0.8,
+                              TextButton(
+                                onPressed: () {},
                                 child: Row(
                                   children: [
                                     Text(
                                       "좋아요 누른 글",
                                       style: TextStyle(fontSize: 20),
                                     ),
-                              
                                     Icon(Icons.chevron_right),
                                   ],
                                 ),
                               ),
-                            ),
 
-                            SizedBox(height: 9),
+                              SizedBox(height: 9),
 
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: Container(
+                                  color: Colors.grey,
+                                  width: screenWidth * 0.9,
+                                  height: 2,
+                                ),
                               ),
-                              child: Container(
-                                color: Colors.grey,
-                                width: screenWidth * 0.9,
-                                height: 2,
-                              ),
-                            ),
 
-                            SizedBox(height: 9),
+                              SizedBox(height: 9),
 
-                            InkWell(
-                              onTap: (){
-
-                              },
-                              child: Container(
-                                width: screenWidth*0.8,
+                              TextButton(
+                                onPressed: () {},
                                 child: Row(
                                   children: [
-                                    Text("댓글 관리", style: TextStyle(fontSize: 20)),
+                                    Text(
+                                      "댓글 관리",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
                                     Icon(Icons.chevron_right),
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -201,56 +186,61 @@ class Profile extends StatelessWidget {
 
                   Row(
                     children: [
-                      Container(
-                        width: screenWidth * 0.9,
-                        height: screenheight * 0.18,
-                        padding: EdgeInsets.symmetric(vertical: 16),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 3),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "내 정보 관리",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  Icon(Icons.chevron_right),
-                                ],
+                      Expanded(
+                        child: Container(
+                          width: screenWidth * 0.9,
+                          height: screenheight * 0.18,
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey, width: 3),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                onPressed: () {},
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "내 정보 관리",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    Icon(Icons.chevron_right),
+                                  ],
+                                ),
                               ),
-                            ),
 
-                            SizedBox(height: 9),
+                              SizedBox(height: 9),
 
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: Container(
+                                  color: Colors.grey,
+                                  width: screenWidth * 0.8,
+                                  height: 2,
+                                ),
                               ),
-                              child: Container(
-                                color: Colors.grey,
-                                width: screenWidth * 0.8,
-                                height: 2,
+
+                              SizedBox(height: 9),
+
+                              TextButton(
+                                onPressed: () {},
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "계정 탈퇴",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+
+                                    Icon(Icons.chevron_right),
+                                  ],
+                                ),
                               ),
-                            ),
-
-                            SizedBox(height: 9),
-
-                            TextButton(
-                              onPressed: () {},
-                              child: Row(
-                                children: [
-                                  Text("계정 탈퇴", style: TextStyle(fontSize: 20)),
-
-                                  Icon(Icons.chevron_right),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
