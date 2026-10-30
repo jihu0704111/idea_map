@@ -11,15 +11,28 @@ class write extends StatefulWidget {
 class _writeState extends State<write> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
+  bool isButtonEnabled = false;
+  void checkInput() {
+    setState(() {
+      isButtonEnabled =
+          titleController.text.trim().isNotEmpty &&
+          contentController.text.trim().isNotEmpty;
+    });
+  }
+
   void uploadPost() {
     String title = titleController.text.trim();
 
     String content = contentController.text.trim();
 
+    if (title.isEmpty || content.isEmpty) {
+      return;
+    }
+
     widget.onUpload(title, content);
     titleController.clear();
     contentController.clear();
-
+    Navigator.pop(context);
     ScaffoldMessenger.of(context)
         .showSnackBar(const SnackBar(content: Text("게시판에 등록되었습니다.")));
   }
@@ -58,13 +71,13 @@ class _writeState extends State<write> {
             ),
           ),
           TextButton(
-            onPressed: uploadPost,
-            child: const Text(
+            onPressed: isButtonEnabled ? uploadPost : null,
+            child: Text(
               '등록',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
+                color: isButtonEnabled ? Colors.black : Colors.grey,
+
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -100,8 +113,15 @@ class _writeState extends State<write> {
             ),
           ),
           TextButton(
-            onPressed: uploadPost,
-            child: const Text('등록', style: TextStyle(color: Colors.black)),
+            onPressed: isButtonEnabled ? uploadPost : null,
+            child: Text(
+              '등록',
+              style: TextStyle(
+                color: isButtonEnabled ? Colors.black : Colors.grey,
+
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),
@@ -121,6 +141,9 @@ class _writeState extends State<write> {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: TextField(
                 controller: titleController,
+                onChanged: (value) {
+                  checkInput();
+                },
                 decoration: const InputDecoration(
                   hintText: '제목을 입력해주세요',
                   hintStyle: TextStyle(color: Colors.grey, fontSize: 12),
@@ -139,6 +162,9 @@ class _writeState extends State<write> {
                 padding: const EdgeInsets.symmetric(horizontal: 22),
                 child: TextField(
                   controller: contentController,
+                  onChanged: (value) {
+                    checkInput();
+                  },
                   maxLines: null,
                   expands: true,
                   textAlignVertical: TextAlignVertical.top,
