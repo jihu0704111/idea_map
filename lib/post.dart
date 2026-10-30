@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:idea_map/profile.dart';
+import 'package:idea_map/searchscreen.dart';
 import 'package:idea_map/write.dart';
 
 class post extends StatefulWidget {
