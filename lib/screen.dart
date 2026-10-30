@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idea_map/post.dart';
 import 'package:idea_map/profile.dart';
+import 'package:idea_map/searchscreen.dart';
 
 class Screen extends StatefulWidget {
   const new({super.key});
@@ -29,7 +30,12 @@ class _ScreenState extends State<Screen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Searchscreen()),
+              );
+            },
             icon: Icon(Icons.search_outlined, size: 35),
           ),
           IconButton(
