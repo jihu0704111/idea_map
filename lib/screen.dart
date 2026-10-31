@@ -49,7 +49,7 @@ class _ScreenState extends State<Screen> {
         decoration: BoxDecoration(
           border: Border(top: BorderSide(color: Colors.black)),
         ),
-        height: 70,
+        height: 100,
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
