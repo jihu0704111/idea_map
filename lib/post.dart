@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:idea_map/profile.dart';
 import 'package:idea_map/searchscreen.dart';
 import 'package:idea_map/write.dart';
+import 'package:idea_map/board.dart';
 
 class post extends StatefulWidget {
   const post({super.key});
@@ -11,13 +12,17 @@ class post extends StatefulWidget {
 }
 
 class _postState extends State<post> {
+  // 게시글 데이터 저장
   List<Map<String, String>> datas = [];
+
+  // 게시글 삭제
   void deletePost(int index) {
     setState(() {
       datas.removeAt(index);
     });
   }
 
+  // 글쓰기 화면 이동
   void goWrite() {
     Navigator.push(
       context,
@@ -26,6 +31,7 @@ class _postState extends State<post> {
           return write(
             onUpload: (title, content) {
               setState(() {
+                // 새 게시글을 맨 위에 추가
                 datas.insert(0, {"title": title, "content": content});
               });
             },
@@ -35,14 +41,29 @@ class _postState extends State<post> {
     );
   }
 
+  // 게시글 상세 화면 이동
+  void goDetail(int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return board(
+            title: datas[index]["title"]!,
+            content: datas[index]["content"]!,
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(),
 
-      // 매인 화면
+      // 메인 화면
       body: Column(
         children: [
           Padding(
@@ -55,6 +76,7 @@ class _postState extends State<post> {
                 ),
 
                 Spacer(),
+
                 TextButton(
                   onPressed: () {},
                   child: Row(
@@ -89,92 +111,106 @@ class _postState extends State<post> {
           // 게시판 목록
           Expanded(
             child: ListView.builder(
-              //게시글 개수 자동 계산 <-챗지피티 지리노ㅋㅋ
               itemCount: datas.length,
+
               itemBuilder: (context, index) {
-                return Container(
-                  height: 100,
-                  margin: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // 제목
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                datas[index]["title"]!,
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.w600,
+                return InkWell(
+                  // 게시글을 누르면 상세 화면으로 이동
+                  onTap: () {
+                    goDetail(index);
+                  },
+
+                  child: Container(
+                    height: 100,
+                    margin: const EdgeInsets.all(10),
+
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                    ),
+
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // 제목 및 내용
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 25),
+
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
+                              children: [
+                                Text(
+                                  datas[index]["title"]!,
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
 
-                              Text(
-                                datas[index]["content"]!,
-                                style: TextStyle(fontSize: 16),
-                              ),
+                                Text(
+                                  datas[index]["content"]!,
+                                  style: TextStyle(fontSize: 16),
+                                ),
 
-                              Row(
-                                children: [
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.favorite_outline),
-                                  ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.favorite_outline),
+                                    ),
 
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.comment_outlined),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.comment_outlined),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      // 사진
-                      Container(
-                        width: 80,
-                        height: 80,
 
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
+                        // 사진
+                        Container(
+                          width: 80,
+                          height: 80,
 
-                          borderRadius: BorderRadius.circular(20),
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+
+                          child: const Icon(Icons.image),
                         ),
 
-                        child: const Icon(Icons.image),
-                      ),
+                        // 공유 및 더보기
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.ios_share),
+                            ),
 
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.ios_share),
-                          ),
-
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.more_vert),
-                          ),
-                        ],
-                      ),
-                    ],
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.more_vert),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
             ),
           ),
-          //글쓰기 버튼
+
+          // 글쓰기 버튼
           Padding(
             padding: const EdgeInsets.only(right: 20, bottom: 30),
+
             child: Align(
               alignment: Alignment.centerRight,
 
