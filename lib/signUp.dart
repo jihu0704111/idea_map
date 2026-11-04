@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:idea_map/emailLogin.dart';
+import 'package:idea_map/main.dart';
 import 'package:idea_map/signUp2.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Signup extends StatefulWidget {
   const new({super.key});
@@ -12,6 +14,8 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   bool isPassword1 = true;
   bool isPassword2 = true;
+  final idcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -65,6 +69,7 @@ class _SignupState extends State<Signup> {
                 SizedBox(height: 5),
                 SizedBox(
                   child: TextField(
+                    controller: idcontroller,
                     decoration: InputDecoration(
                       isDense: true,
                       hintText: "아이디를 입력해주세요",
@@ -147,6 +152,7 @@ class _SignupState extends State<Signup> {
                 SizedBox(height: 5),
                 SizedBox(
                   child: TextField(
+                    controller: passwordcontroller,
                     obscureText: isPassword2,
                     decoration: InputDecoration(
                       isDense: true,
@@ -201,11 +207,27 @@ class _SignupState extends State<Signup> {
               ),
             ),
 
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Signup2()),
-              );
+           onPressed: () async {
+              final email = idcontroller.text.trim();
+              final password = passwordcontroller.text.trim();
+              try {
+                final response = await supabase.auth.signUp(
+                  email: email,
+                  password:password,
+                );
+                if (response.user != null ) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => emailLogin()),
+                  );
+                }
+              } 
+              on AuthException catch(e){
+                print("회원가입 실패: ${e.message}");
+              }              
+              catch (e) {
+                print('회원가입 실패${e}');
+              }
             },
             child: Text(
               "다음",

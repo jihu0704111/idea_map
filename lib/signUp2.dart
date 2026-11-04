@@ -1,9 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:idea_map/emailLogin.dart';
+import 'package:idea_map/main.dart';
 
 class Signup2 extends StatefulWidget {
-  const new({super.key});
+  final String email, password; // signup에 있는 변수 가져오기
+  const Signup2({
+    super.key,
+    required this.email,
+    required this.password,
+  }); // signup에 있는 변수 가져오기
 
   @override
   State<Signup2> createState() => _Signup2State();
@@ -201,7 +207,6 @@ class _Signup2State extends State<Signup2> {
                       // 생년월일 선택 시트
                       context: context,
                       builder: (context) {
-                        
                         return Column(
                           children: [
                             StatefulBuilder(
@@ -222,8 +227,7 @@ class _Signup2State extends State<Signup2> {
                                             itemExtent: 50, // 항목당 차지하는 높이
                                             scrollController:
                                                 FixedExtentScrollController(
-                                                  initialItem:
-                                                      selectedyear, // 전에 선택해놓으면 선택한곳부터 시작 
+                                                  initialItem: selectedyear, // 전에 선택해놓으면 선택한곳부터 시작
                                                 ),
                                             onSelectedItemChanged: (index) {
                                               setModalState(() {
@@ -429,11 +433,21 @@ class _Signup2State extends State<Signup2> {
               ),
             ),
 
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => emailLogin()),
-              );
+            onPressed: () async {
+              try {
+                final response = await supabase.auth.signUp(
+                  email: widget.email,
+                  password: widget.password,
+                );
+                if (response.user != null ) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => emailLogin()),
+                  );
+                }
+              } catch (e) {
+                print('회원가입 실패${e}');
+              }
             },
             child: Text(
               "다음",

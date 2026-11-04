@@ -153,28 +153,44 @@ class _emailLoginState extends State<emailLogin> {
                               ),
                             ),
           
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(builder: (context) => Screen()),
-                              );
+                            onPressed: () async{
+
+                              try{
+                                final id = _emailController.text.trim();                    // trim() = 문자열의 앞 뒤 공백을 없앰
+                                final password = _passwordController.text.trim();
+
+                                final response = await supabase.auth.signInWithPassword(            // 이메일과 비밀번호를 서버에 전달해서 로그인하는 메서드
+                                  email: id,
+                                  password: password
+                                  );                                              // 로그인 요청이 성공적으로 완료되어 반환한 결과를 저장
+                                  if (response.user != null){                   // .user => DB에 로그인 된 사용자 정보를 확인 - 비어있지 않다면 밑 코드 실행
+                                    Navigator.push(context,
+                                    MaterialPageRoute(builder: (context)=> Screen()));
+
+                                    
+                                  }
+                              }
+                              catch(e){ //                      try에서 예외가 발생하면 밑 코드 실행
+                                print('로그인 실패${e}');
+                              }
+                              
                             }, //async {
                             //   try {
-                            //     final id = _emailController.text.trim();
-                            //     final password = _passwordController.text.trim();
+                            //     final id = _emailController.text.trim(); // trim() = 문자열의 앞 뒤 공백을 없앰
+                            //     final password = _passwordController.text.();
           
-                            //     final response = await supabase.auth.signInWithPassword(
+                            //     final response = await supabase.auth.signInWithPassword( // 이메일과 비밀번호를 서버에 전달해서 로그인하는 메서드
                             //       email: id,
                             //       password: password,
-                            //     );
+                            //     ); // 로그인 요청이 성공적으로 완료되어 반환한 결과를 저장
           
-                            //     if (response.user != null) {
+                            //     if (response.user != null) { // .user => DB에 로그인 된 사용자 정보를 확인 - 비어있지 않다면 밑 코드 실행
                             //       Navigator.pushReplacement(
-                            //         context,
-                            //         MaterialPageRoute(builder: (context) => post()),
-                            //       );
+                             //   context,
+                              //  MaterialPageRoute(builder: (context) => Screen()),
+                             // );
                             //     }
-                            //   } catch (e) {
+                            //   } catch (e) { // -> try에서 예외가 발생하면 밑 코드 실행
                             //     print("로그인 실패: $e");
                             //   }
                             // },
