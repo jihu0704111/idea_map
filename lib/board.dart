@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class board extends StatefulWidget {
-  // post.dart에서 전달받을 게시글 데이터
   final String title;
   final String content;
+  final String createdAt;
 
-  const board({super.key, required this.title, required this.content});
+  const board({
+    super.key,
+    required this.title,
+    required this.content,
+    required this.createdAt,
+  });
 
   @override
   State<board> createState() => _boardState();
@@ -121,10 +126,10 @@ class _boardState extends State<board> {
 
                         const SizedBox(width: 9),
 
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               "닉네임",
                               style: TextStyle(
                                 fontSize: 13,
@@ -133,8 +138,11 @@ class _boardState extends State<board> {
                             ),
 
                             Text(
-                              "방금 전",
-                              style: TextStyle(fontSize: 9, color: Colors.grey),
+                              widget.createdAt,
+                              style: const TextStyle(
+                                fontSize: 9,
+                                color: Colors.grey,
+                              ),
                             ),
                           ],
                         ),

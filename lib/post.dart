@@ -12,6 +12,16 @@ class post extends StatefulWidget {
 }
 
 class _postState extends State<post> {
+  String FormatDateTime(DateTime date) {
+    String year = (date.year % 100).toString();
+    String month = date.month.toString().padLeft(2, '0');
+    String day = date.day.toString().padLeft(2, '0');
+    String hour = date.hour.toString().padLeft(2, '0');
+    String minute = date.minute.toString().padLeft(2, '0');
+
+    return "$year/$month/$day $hour:$minute";
+  }
+
   // 게시글 데이터 저장
   List<Map<String, String>> datas = [];
 
@@ -32,7 +42,11 @@ class _postState extends State<post> {
             onUpload: (title, content) {
               setState(() {
                 // 새 게시글을 맨 위에 추가
-                datas.insert(0, {"title": title, "content": content});
+                datas.insert(0, {
+                  "title": title,
+                  "content": content,
+                  "createdAt": FormatDateTime(DateTime.now()),
+                });
               });
             },
           );
@@ -50,6 +64,7 @@ class _postState extends State<post> {
           return board(
             title: datas[index]["title"]!,
             content: datas[index]["content"]!,
+            createdAt: datas[index]["createdAt"]!,
           );
         },
       ),
@@ -117,7 +132,18 @@ class _postState extends State<post> {
                 return InkWell(
                   // 게시글을 누르면 상세 화면으로 이동
                   onTap: () {
-                    goDetail(index);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return board(
+                            title: datas[index]["title"]!,
+                            content: datas[index]["content"]!,
+                            createdAt: datas[index]["createdAt"]!,
+                          );
+                        },
+                      ),
+                    );
                   },
 
                   child: Container(
